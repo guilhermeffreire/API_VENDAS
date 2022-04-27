@@ -6,7 +6,7 @@ interface ITemplateVariable {
 }
 
 interface IParseMailTemplate {
-    template: string;
+    file: string;
     variables: ITemplateVariable;
 }
 
@@ -54,6 +54,8 @@ export default class EtherealMail {
             subject,
             html: await mailTemplate.parse(templateData),
         });
+
+        //Utilizado console.log para pegar as informações geradas pelo Ethereal
 
         console.log('Message sent: %s', message.messageId);
         // Preview only available when sending through an Ethereal account
