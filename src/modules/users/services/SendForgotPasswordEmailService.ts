@@ -24,7 +24,12 @@ class SendForgotPasswordEmailService {
 
         console.log('Token gerado pelo repository : ', token);
 
-        const forgotPasswordTemplate = path.resolve(__dirname, '..', 'views', 'forgot_password.hbs');
+        const forgotPasswordTemplate = path.resolve(
+            __dirname,
+            '..',
+            'views',
+            'forgot_password.hbs',
+        );
 
         await EtherealMail.sendMail({
             to: {
@@ -36,7 +41,7 @@ class SendForgotPasswordEmailService {
                 file: forgotPasswordTemplate,
                 variables: {
                     name: user.name,
-                    link: `http://localhost:3000/reset_password?token=${token}`, //Feito desta forma para testes do token
+                    link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`, //Feito desta forma para testes do token
                     token,
                 },
             },
