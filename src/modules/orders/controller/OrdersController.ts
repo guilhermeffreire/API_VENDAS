@@ -17,7 +17,6 @@ export default class OrdersController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-
         const { customer_id, products } = request.body;
 
         const createOrder = new CreateOrderService();
