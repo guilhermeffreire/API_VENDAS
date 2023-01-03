@@ -1,4 +1,3 @@
-import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository';
 import Customer from '../infra/typeorm/entities/Customer';
 import AppError from '@shared/errors/AppError';
 import { IUpdateCustomer } from '@modules/customers/domain/models/IUpdateCustomer';

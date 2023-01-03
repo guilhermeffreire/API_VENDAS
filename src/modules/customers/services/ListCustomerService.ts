@@ -1,4 +1,3 @@
-import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository';
 import { inject, injectable } from 'tsyringe';
 import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';
 import IPaginateCustomer from '@modules/customers/domain/models/IPaginateCustomer';

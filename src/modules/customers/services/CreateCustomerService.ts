@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import AppError from '@shared/errors/AppError';
 import { ICreateCustomer } from '@modules/customers/domain/models/ICreateCustomer';
 import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';

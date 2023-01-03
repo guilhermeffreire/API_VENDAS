@@ -20,7 +20,7 @@ app.use(pagination);
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 
-//Celebrate Erros
+//Celebrate Errors
 app.use(errors());
 
 app.use(
@@ -32,7 +32,7 @@ app.use(
     ) => {
         if (error instanceof AppError) {
             return response.status(error.statusCode).json({
-                status: 'error',
+                status: 'Error',
                 message: error.message,
             });
         }
@@ -40,7 +40,7 @@ app.use(
         console.log(error);
 
         return response.status(500).json({
-            status: 'error',
+            status: 'Error',
             message: 'Internal Server Error',
         });
     },

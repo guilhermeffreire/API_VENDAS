@@ -1,6 +1,5 @@
 import AppError from '@shared/errors/AppError';
 import Customer from '../infra/typeorm/entities/Customer';
-import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository';
 import IBaseRequest from '@modules/customers/domain/models/IBaseRequest';
 import { inject, injectable } from 'tsyringe';
 import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';

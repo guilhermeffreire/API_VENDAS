@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import CustomersController from '../controllers/CustomersController';
 import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
+import { container } from 'tsyringe';
 
 const customerRoutes = Router();
-const customersController = new CustomersController();
+const customersController = container.resolve(CustomersController);
 
 customerRoutes.use(isAuthenticated);
 customerRoutes.get('/', customersController.index);
@@ -35,7 +36,7 @@ customerRoutes.put(
     celebrate({
         [Segments.BODY]: {
             name: Joi.string().required(),
-            email: Joi.string().email().required(),
+            email: Joi.string().email(),
         },
         [Segments.PARAMS]: {
             id: Joi.string().uuid().required(),
