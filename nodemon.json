@@ -2,5 +2,5 @@
     "watch": ["src", "bin"],
     "ext": ".ts,.js",
     "ignore": [],
-    "exec": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/http/server.ts"
+    "exec": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts"
 }

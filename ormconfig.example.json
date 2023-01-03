@@ -8,5 +8,11 @@
     "migrations": ["./src/shared/typeorm/migrations/*.ts"],
     "cli": {
         "migrationDir": "./src/shared/typeorm/migrations"
-    }
+    },
+    "entities": [
+        "./src/modules/customers/typeorm/entities/*.ts",
+        "./src/modules/orders/typeorm/entities/*.ts",
+        "./src/modules/products/typeorm/entities/*.ts",
+        "./src/modules/users/typeorm/entities/*.ts"
+    ]
 }

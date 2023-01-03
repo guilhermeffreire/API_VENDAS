@@ -1,25 +1,27 @@
-import { getCustomRepository } from 'typeorm';
-import { CustomersRepository } from '../typeorm/repositories/CustomersRepository';
-import Customer from '../typeorm/entities/Customer';
+import { CustomersRepository } from '../infra/typeorm/repositories/CustomersRepository';
+import Customer from '../infra/typeorm/entities/Customer';
 import AppError from '@shared/errors/AppError';
+import { IUpdateCustomer } from '@modules/customers/domain/models/IUpdateCustomer';
+import { inject, injectable } from 'tsyringe';
+import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';
 
-interface IRequest {
-    id: string;
-    name: string;
-    email: string;
-}
-
+@injectable()
 class UpdateCustomerService {
-    public async execute({ id, name, email }: IRequest): Promise<Customer> {
-        const customerRepository = getCustomRepository(CustomersRepository);
+    constructor(
+        @inject('CustomersRepository')
+        private _customersRepository: ICustomersRepository,
+    ) {}
 
-        const customer = await customerRepository.findByID(id);
+    async execute({ id, name, email }: IUpdateCustomer): Promise<Customer> {
+        const customer = await this._customersRepository.findByID(id);
 
         if (!customer) {
             throw new AppError('Customer not found.');
         }
 
-        const customerEmail = await customerRepository.findByEmail(email);
+        const customerEmail = await this._customersRepository.findByEmail(
+            email,
+        );
 
         if (customerEmail && email != customer.email) {
             throw new AppError(
@@ -30,7 +32,7 @@ class UpdateCustomerService {
         customer.name = name;
         customer.email = email;
 
-        await customerRepository.save(customer);
+        await this._customersRepository.save(customer);
 
         return customer;
     }
