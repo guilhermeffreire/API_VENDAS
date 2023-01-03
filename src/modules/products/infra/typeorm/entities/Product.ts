@@ -1,4 +1,3 @@
-import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 import {
     Entity,
     Column,
@@ -7,6 +6,7 @@ import {
     UpdateDateColumn,
     OneToMany,
 } from 'typeorm';
+import OrdersProducts from '@modules/orders/infra/typeorm/entities/OrdersProducts';
 
 @Entity('products')
 class Product {

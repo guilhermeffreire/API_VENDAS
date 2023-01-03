@@ -6,9 +6,10 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm';
+import { IUserToken } from '@modules/users/domain/model/IUserToken';
 
 @Entity('users_token')
-class UserToken {
+class UserToken implements IUserToken {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 

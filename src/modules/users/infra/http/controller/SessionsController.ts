@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import CreateSessionsService from '../../../services/CreateSessionsService';
 import { instanceToInstance } from 'class-transformer';
+import { container, injectable } from 'tsyringe';
 
+@injectable()
 export default class SessionsController {
     public async create(
         request: Request,
@@ -9,7 +11,7 @@ export default class SessionsController {
     ): Promise<Response> {
         const { email, password } = request.body;
 
-        const sessionService = new CreateSessionsService();
+        const sessionService = container.resolve(CreateSessionsService);
 
         const user = await sessionService.execute({
             email,

@@ -1,27 +1,32 @@
 import AppError from '@shared/errors/AppError';
-import { getCustomRepository } from 'typeorm';
 import { isAfter, addHours } from 'date-fns';
 import { hash } from 'bcryptjs';
-import { UsersRepository } from '../infra/typeorm/repositories/UsersRepository';
-import { UsersTokensRepository } from '../infra/typeorm/repositories/UsersTokensRepository';
+import { IResetPasswordService } from '@modules/users/domain/model/IResetPasswordService';
+import { inject, injectable } from 'tsyringe';
+import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepository';
+import { IUsersTokensRepository } from '@modules/users/domain/repositories/IUsersTokensRepository';
 
-interface IRequest {
-    token: string;
-    password: string;
-}
-
+@injectable()
 class ResetPasswordService {
-    public async execute({ token, password }: IRequest): Promise<void> {
-        const usersRepository = getCustomRepository(UsersRepository);
-        const userTokenRepository = getCustomRepository(UsersTokensRepository);
+    constructor(
+        @inject('UsersRepository')
+        private _usersRepository: IUsersRepository,
 
-        const userToken = await userTokenRepository.findByToken(token);
+        @inject('UsersTokensRepository')
+        private _usersTokenRepository: IUsersTokensRepository,
+    ) {}
+
+    public async execute({
+        token,
+        password,
+    }: IResetPasswordService): Promise<void> {
+        const userToken = await this._usersTokenRepository.findByToken(token);
 
         if (!userToken) {
             throw new AppError('User Token does not exists.');
         }
 
-        const user = await usersRepository.findByID(userToken.user_id);
+        const user = await this._usersRepository.findByID(userToken.user_id);
 
         if (!user) {
             throw new AppError('User does not exists.');
@@ -36,7 +41,7 @@ class ResetPasswordService {
 
         user.password = await hash(password, 8);
 
-        await usersRepository.save(user);
+        await this._usersRepository.save(user);
     }
 }
 

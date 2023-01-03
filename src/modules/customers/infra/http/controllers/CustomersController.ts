@@ -4,8 +4,9 @@ import DeleteCustomerService from '../../../services/DeleteCustomerService';
 import ListCustomerService from '../../../services/ListCustomerService';
 import UpdateCustomerService from '../../../services/UpdateCustomerService';
 import ShowCustomerService from '../../../services/ShowCustomerService';
-import { container } from 'tsyringe';
+import { container, injectable } from 'tsyringe';
 
+@injectable()
 export default class CustomersController {
     async index(request: Request, response: Response): Promise<Response> {
         const listCustomers = container.resolve(ListCustomerService);
