@@ -12,6 +12,9 @@ import SessionsController from '@modules/users/infra/http/controller/SessionsCon
 import ResetPasswordController from '@modules/users/infra/http/controller/ResetPasswordController';
 import ProfileController from '@modules/users/infra/http/controller/ProfileController';
 import ForgotPasswordController from '@modules/users/infra/http/controller/ForgotPasswordController';
+import { IProductsRepository } from '@modules/products/domain/repositories/IProductsRepository';
+import { ProductRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
+import ProductsController from '@modules/products/infra/http/controllers/ProductsController';
 
 const dependenciesContainer = {
     Repositories: {
@@ -26,6 +29,10 @@ const dependenciesContainer = {
         UsersToken: container.registerSingleton<IUsersTokensRepository>(
             'UsersTokensRepository',
             UsersTokensRepository,
+        ),
+        Products: container.registerSingleton<IProductsRepository>(
+            'ProductRepository',
+            ProductRepository,
         ),
     },
     Controllers: {
@@ -54,9 +61,14 @@ const dependenciesContainer = {
             'ProfileController',
             ProfileController,
         ),
-        ForgotPasswordController: container.register<ForgotPasswordController>(
-            'ForgotPasswordController',
-            ForgotPasswordController,
+        ForgotPasswordController:
+            container.registerSingleton<ForgotPasswordController>(
+                'ForgotPasswordController',
+                ForgotPasswordController,
+            ),
+        ProductsController: container.registerSingleton<ProductsController>(
+            'ProductsController',
+            ProductsController,
         ),
     },
 };

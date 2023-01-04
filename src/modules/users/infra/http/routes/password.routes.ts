@@ -2,10 +2,11 @@ import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import ForgotPasswordController from '../controller/ForgotPasswordController';
 import ResetPasswordController from '../controller/ResetPasswordController';
+import { container } from 'tsyringe';
 
 const passwordRouter = Router();
-const forgotPasswordController = new ForgotPasswordController();
-const resetPasswordController = new ResetPasswordController();
+const forgotPasswordController = container.resolve(ForgotPasswordController);
+const resetPasswordController = container.resolve(ResetPasswordController);
 
 passwordRouter.post(
     '/forgot',

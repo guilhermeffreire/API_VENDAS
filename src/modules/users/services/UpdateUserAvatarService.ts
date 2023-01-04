@@ -7,7 +7,7 @@ import { IUpdateUserAvatarService } from '@modules/users/domain/model/IUpdateUse
 import { inject, injectable } from 'tsyringe';
 import { IUsersRepository } from '@modules/users/domain/repositories/IUsersRepository';
 
-injectable();
+@injectable()
 class UpdateUserAvatarService {
     constructor(
         @inject('UsersRepository')

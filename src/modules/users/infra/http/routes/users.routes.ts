@@ -5,10 +5,11 @@ import multer from 'multer';
 import uploadConfig from '@config/upload';
 import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
 import UserAvatarController from '../controller/UserAvatarController';
+import { container } from 'tsyringe';
 
 const usersRouter = Router();
-const usersController = new UsersController();
-const userAvatarControler = new UserAvatarController();
+const usersController = container.resolve(UsersController);
+const userAvatarControler = container.resolve(UserAvatarController);
 const upload = multer(uploadConfig);
 
 usersRouter.get('/', isAuthenticated, usersController.index);

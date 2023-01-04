@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
 import ProfileController from '../controller/ProfileController';
+import { container } from 'tsyringe';
 
 const profileRouter = Router();
-const profileController = new ProfileController();
+const profileController = container.resolve(ProfileController);
 
 profileRouter.use(isAuthenticated);
 

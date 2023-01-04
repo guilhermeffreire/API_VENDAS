@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import ProductsController from '../controllers/ProductsController';
 import { celebrate, Joi, Segments } from 'celebrate';
+import { container } from 'tsyringe';
+import ProductsController from '@modules/products/infra/http/controllers/ProductsController';
 
 const productsRouter = Router();
-const productsController = new ProductsController();
+const productsController = container.resolve(ProductsController);
 
 productsRouter.get('/', productsController.index);
 

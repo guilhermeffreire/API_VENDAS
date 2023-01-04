@@ -1,5 +1,5 @@
 import AppError from '@shared/errors/AppError';
-import IBaseRequest from '@modules/customers/domain/models/IBaseRequest';
+import IBaseCustomerService from '@modules/customers/domain/models/IBaseCustomerService';
 import { inject, injectable } from 'tsyringe';
 import { ICustomersRepository } from '@modules/customers/domain/repositories/ICustomersRepository';
 
@@ -9,7 +9,7 @@ class DeleteCustomerService {
         @inject('CustomersRepository')
         private _customerRepository: ICustomersRepository,
     ) {}
-    async execute({ id }: IBaseRequest): Promise<void> {
+    async execute({ id }: IBaseCustomerService): Promise<void> {
         const customer = await this._customerRepository.findByID(id);
 
         if (!customer) {

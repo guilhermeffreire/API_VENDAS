@@ -1,9 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
 import SessionsController from '../controller/SessionsController';
+import { container } from 'tsyringe';
 
 const sessionsRoutes = Router();
-const sessionsController = new SessionsController();
+const sessionsController = container.resolve(SessionsController);
 
 sessionsRoutes.post(
     '/',
