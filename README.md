@@ -1,9 +1,5 @@
 # Projeto backend de vendas com Node.js
 
-## Status: 👷‍♂️ Em andamento
-
-Em breve será atualizado com regras de negócio.
-
 ## ✨ Tecnologias
 
 Nesse projeto está sendo usado as seguintes tecnologias:
