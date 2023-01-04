@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { celebrate, Joi, Segments } from 'celebrate';
 import OrdersController from '../controller/OrdersController';
 import isAuthenticated from '@shared/infra/http/middlewares/isAuthenticated';
+import { container } from 'tsyringe';
 
 const ordersRouter = Router();
-const ordersController = new OrdersController();
+const ordersController = container.resolve(OrdersController);
 
 ordersRouter.use(isAuthenticated);
 

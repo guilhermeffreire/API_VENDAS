@@ -61,7 +61,7 @@ export class ProductRepository implements IProductsRepository {
         return product;
     }
 
-    async save(product: IProduct): Promise<void> {
+    async save(product: any): Promise<void> {
         await this._ormRepository.save(product);
     }
 

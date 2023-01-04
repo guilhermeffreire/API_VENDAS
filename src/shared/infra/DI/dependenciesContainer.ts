@@ -15,6 +15,9 @@ import ForgotPasswordController from '@modules/users/infra/http/controller/Forgo
 import { IProductsRepository } from '@modules/products/domain/repositories/IProductsRepository';
 import { ProductRepository } from '@modules/products/infra/typeorm/repositories/ProductsRepository';
 import ProductsController from '@modules/products/infra/http/controllers/ProductsController';
+import { IOrdersRepository } from '@modules/orders/domain/repositories/IOrdersRepository';
+import { OrdersRepository } from '@modules/orders/infra/typeorm/repositories/OrdersRepository';
+import OrdersController from '@modules/orders/infra/http/controller/OrdersController';
 
 const dependenciesContainer = {
     Repositories: {
@@ -33,6 +36,10 @@ const dependenciesContainer = {
         Products: container.registerSingleton<IProductsRepository>(
             'ProductRepository',
             ProductRepository,
+        ),
+        Orders: container.registerSingleton<IOrdersRepository>(
+            'OrdersRepository',
+            OrdersRepository,
         ),
     },
     Controllers: {
@@ -69,6 +76,10 @@ const dependenciesContainer = {
         ProductsController: container.registerSingleton<ProductsController>(
             'ProductsController',
             ProductsController,
+        ),
+        OrdersController: container.registerSingleton<OrdersController>(
+            'OrdersController',
+            OrdersController,
         ),
     },
 };

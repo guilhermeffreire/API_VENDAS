@@ -13,7 +13,7 @@ export interface IProductsRepository {
 
     create({ name, price, quantity }: ICreateProductService): Promise<IProduct>;
 
-    save(product: IProduct): Promise<void>;
+    save(product: any): Promise<void>;
 
     remove(product: IProduct): Promise<void>;
 }
