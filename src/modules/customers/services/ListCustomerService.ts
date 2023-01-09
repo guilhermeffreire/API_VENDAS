@@ -8,7 +8,7 @@ class ListCustomerService {
         @inject('CustomersRepository')
         private _customersRepository: ICustomersRepository,
     ) {}
-    public async execute(): Promise<IPaginateCustomer> {
+    async execute(): Promise<IPaginateCustomer> {
         const customers = await this._customersRepository.listAllCostumers();
 
         return customers;

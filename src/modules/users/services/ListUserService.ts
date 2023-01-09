@@ -8,7 +8,7 @@ class ListUserService {
         @inject('UsersRepository')
         private _userRepository: IUsersRepository,
     ) {}
-    public async execute(): Promise<IUser[] | undefined> {
+    async execute(): Promise<IUser[] | undefined> {
         const users = this._userRepository.findAllUsers();
 
         return users;

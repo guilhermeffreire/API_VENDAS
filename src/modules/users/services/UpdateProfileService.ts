@@ -11,7 +11,7 @@ class UpdateProfileService {
         @inject('UsersRepository')
         private _userRepository: IUsersRepository,
     ) {}
-    public async execute({
+    async execute({
         user_id,
         name,
         email,

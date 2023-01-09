@@ -19,7 +19,7 @@ class CreateOrderService {
         @inject('ProductRepository')
         private _productsRepository: IProductsRepository,
     ) {}
-    public async execute({
+    async execute({
         customer_id,
         products,
     }: ICreateOrderService): Promise<IOrder> {

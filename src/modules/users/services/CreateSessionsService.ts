@@ -13,7 +13,7 @@ class CreateSessionsService {
         @inject('UsersRepository')
         private _userRepository: IUsersRepository,
     ) {}
-    public async execute({
+    async execute({
         email,
         password,
     }: ICreateSessionsService): Promise<IResponseCreateSessions> {

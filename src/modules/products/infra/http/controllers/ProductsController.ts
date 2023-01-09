@@ -8,10 +8,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class ProductsController {
-    public async index(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async index(request: Request, response: Response): Promise<Response> {
         const listProducts = container.resolve(ListProductsService);
 
         const products = await listProducts.execute();
@@ -19,7 +16,7 @@ export default class ProductsController {
         return response.json(products);
     }
 
-    public async show(request: Request, response: Response): Promise<Response> {
+    async show(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
         const showProduct = container.resolve(ShowProductService);
@@ -29,10 +26,7 @@ export default class ProductsController {
         return response.json(product);
     }
 
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { name, price, quantity } = request.body;
 
         const createProduct = container.resolve(CreateProductService);
@@ -46,10 +40,7 @@ export default class ProductsController {
         return response.json(product);
     }
 
-    public async update(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async update(request: Request, response: Response): Promise<Response> {
         const { name, price, quantity } = request.body;
         const { id } = request.params;
 
@@ -65,10 +56,7 @@ export default class ProductsController {
         return response.json(productUpdate);
     }
 
-    public async delete(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async delete(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
         const deleteProduct = container.resolve(DeleteProductService);

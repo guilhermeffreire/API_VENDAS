@@ -4,10 +4,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class ForgotPasswordController {
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { email } = request.body;
 
         const sendForgotPasswordEmail = container.resolve(

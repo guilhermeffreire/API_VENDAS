@@ -10,7 +10,7 @@ class ShowProfileService {
         @inject('UsersRepository')
         private _userRepository: IUsersRepository,
     ) {}
-    public async execute({ user_id }: IShowProfileService): Promise<User> {
+    async execute({ user_id }: IShowProfileService): Promise<User> {
         const user = await this._userRepository.findByID(user_id);
 
         if (!user) {

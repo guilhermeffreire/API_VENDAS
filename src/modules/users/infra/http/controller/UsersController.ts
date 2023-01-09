@@ -6,10 +6,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class UsersController {
-    public async index(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async index(request: Request, response: Response): Promise<Response> {
         const listUser = container.resolve(ListUserService);
 
         const users = await listUser.execute();
@@ -17,10 +14,7 @@ export default class UsersController {
         return response.json(instanceToInstance(users));
     }
 
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { name, email, password } = request.body;
 
         const createUser = container.resolve(CreateUserService);

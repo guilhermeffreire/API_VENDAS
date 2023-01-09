@@ -6,7 +6,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class ProfileController {
-    public async show(request: Request, response: Response): Promise<Response> {
+    async show(request: Request, response: Response): Promise<Response> {
         const showProfileService = container.resolve(ShowProfileService);
 
         const user_id = request.user.id;
@@ -16,10 +16,7 @@ export default class ProfileController {
         return response.json(instanceToInstance(profileUser));
     }
 
-    public async update(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async update(request: Request, response: Response): Promise<Response> {
         const updateProfileService = container.resolve(UpdateProfileService);
         const user_id = request.user.id;
         const { name, email, password, old_password } = request.body;

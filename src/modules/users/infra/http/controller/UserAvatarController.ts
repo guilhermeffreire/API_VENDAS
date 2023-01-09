@@ -5,10 +5,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class UserAvatarController {
-    public async update(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async update(request: Request, response: Response): Promise<Response> {
         const updateAvatar = container.resolve(UpdateUserAvatarService);
 
         const avatar = updateAvatar.execute({

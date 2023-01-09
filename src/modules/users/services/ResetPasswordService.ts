@@ -16,10 +16,7 @@ class ResetPasswordService {
         private _usersTokenRepository: IUsersTokensRepository,
     ) {}
 
-    public async execute({
-        token,
-        password,
-    }: IResetPasswordService): Promise<void> {
+    async execute({ token, password }: IResetPasswordService): Promise<void> {
         const userToken = await this._usersTokenRepository.findByToken(token);
 
         if (!userToken) {

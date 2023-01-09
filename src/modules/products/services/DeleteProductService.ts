@@ -11,7 +11,7 @@ class DeleteProductService {
         @inject('ProductRepository')
         private _productsRepository: IProductsRepository,
     ) {}
-    public async execute({ id }: IBaseProductService): Promise<void> {
+    async execute({ id }: IBaseProductService): Promise<void> {
         const product = await this._productsRepository.findById(id);
 
         if (!product) {

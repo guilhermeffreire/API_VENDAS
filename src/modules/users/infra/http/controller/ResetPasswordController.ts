@@ -4,10 +4,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class ResetPasswordController {
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { token, password } = request.body;
 
         const resetPasswordService = container.resolve(ResetPasswordService);

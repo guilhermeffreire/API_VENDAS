@@ -13,7 +13,7 @@ class UpdateProductService {
         private _productsRepository: IProductsRepository,
     ) {}
 
-    public async execute({
+    async execute({
         id,
         name,
         price,

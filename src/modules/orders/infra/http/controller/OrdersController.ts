@@ -5,7 +5,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class OrdersController {
-    public async show(request: Request, response: Response): Promise<Response> {
+    async show(request: Request, response: Response): Promise<Response> {
         const { id } = request.params;
 
         const showOrder = container.resolve(ShowOrderService);
@@ -15,10 +15,7 @@ export default class OrdersController {
         return response.json(order);
     }
 
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { customer_id, products } = request.body;
 
         const createOrder = container.resolve(CreateOrderService);

@@ -11,7 +11,7 @@ class ShowOrderService {
         @inject('OrdersRepository')
         private _ordersRepository: IOrdersRepository,
     ) {}
-    public async execute({ id }: IShowOrderService): Promise<IOrder> {
+    async execute({ id }: IShowOrderService): Promise<IOrder> {
         const order = await this._ordersRepository.findById(id);
 
         if (!order) {

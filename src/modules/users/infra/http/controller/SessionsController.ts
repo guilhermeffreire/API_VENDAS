@@ -5,10 +5,7 @@ import { container, injectable } from 'tsyringe';
 
 @injectable()
 export default class SessionsController {
-    public async create(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
+    async create(request: Request, response: Response): Promise<Response> {
         const { email, password } = request.body;
 
         const sessionService = container.resolve(CreateSessionsService);

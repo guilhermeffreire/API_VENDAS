@@ -13,7 +13,7 @@ class UpdateUserAvatarService {
         @inject('UsersRepository')
         private _userRepository: IUsersRepository,
     ) {}
-    public async execute({
+    async execute({
         user_id,
         avatarFilename,
     }: IUpdateUserAvatarService): Promise<User> {
